@@ -1,4 +1,10 @@
 package org.example.repositories;
 
-public interface FormaPagamentoRepositories {
+
+import org.example.entities.FormaPagamento;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface FormaPagamentoRepositories extends JpaRepository<FormaPagamento, Long> {
 }
