@@ -2,6 +2,9 @@ package org.example.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Fornecedor implements Serializable {
 
@@ -10,11 +13,16 @@ public class Fornecedor implements Serializable {
     @Column(name = "ID")
         private Long id;
 
-    @Column(length = 155, name = "ServicoSocial", nullable = false)
-        private String servicoSocial;
+
+    @OneToMany(mappedBy = "conFornecedor", cascade = CascadeType.ALL)
+     private List<Contato> contatos = new ArrayList<>();
+
+
+    @Column(length = 155, name = "RazaoSocial", nullable = false)
+        private String RazaoSocial;
 
     @Column(length = 155, name = "NomeFantasia", nullable = false)
-        private String nomeFantasia;
+        private String NomeFantasia;
 
     @Column(length = 14, name = "CNPJ", nullable = false)
         private String cnpj;
@@ -25,10 +33,10 @@ public class Fornecedor implements Serializable {
     public Fornecedor() {
     }
 
-    public Fornecedor(Long id, String servicoSocial, String nomeFantasia, String cnpj, String status) {
+    public Fornecedor(Long id, String RazaoSocial, String NomeFantasia, String cnpj, String status) {
         this.id = id;
-        this.servicoSocial = servicoSocial;
-        this.nomeFantasia = nomeFantasia;
+        this.RazaoSocial = RazaoSocial;
+        this.NomeFantasia = NomeFantasia;
         this.cnpj = cnpj;
         this.status = status;
     }
@@ -41,20 +49,20 @@ public class Fornecedor implements Serializable {
         this.id = id;
     }
 
-    public String getServicoSocial() {
-        return servicoSocial;
+    public String getRazaoSocial() {
+        return RazaoSocial;
     }
 
-    public void setServicoSocial(String servicoSocial) {
-        this.servicoSocial = servicoSocial;
+    public void setRazaoSocial(String RazaoSocial) {
+        this.RazaoSocial = RazaoSocial;
     }
 
     public String getNomeFantasia() {
-        return nomeFantasia;
+        return NomeFantasia;
     }
 
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
+    public void setNomeFantasia(String NomeFantasia) {
+        this.NomeFantasia = NomeFantasia;
     }
 
     public String getCnpj() {
